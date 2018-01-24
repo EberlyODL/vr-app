@@ -14,12 +14,17 @@
         background-repeat: no-repeat;
       }
 
-      .home_page_title {
-        display: flex;
-        justify-content: center;
+      psu-logo {
+        max-width: 15%;
+        top: 5px;
+      }
+
+      .logo_wrap {
         background: rgba(0, 0, 0, 0.5);
+      }
+
+      .home_page_title {
         color: #fff;
-        margin-bottom: 25px;
       }
 
       .scene_wrap {
@@ -40,10 +45,22 @@
         width: 300px;
         margin: 10px;
       }
+
+      .app_footer_wrap {
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        height: 75px;
+      }
+
+      .app_footer {
+        color: #fff;
+      }
     </style>
 
-    <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
-
+    <div class="logo_wrap">
+      <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
+    </div>
 
     <div class="home_page_title">
       <h1>FRNSC:Virtual Crime Scene</h1>
@@ -58,6 +75,12 @@
       <div class="scene_row">
         <div class="scene">Scene 3</div>
         <div class="scene">Scene 4</div>
+      </div>
+    </div>
+
+    <div class="app_footer_wrap">
+      <div class="app_footer">
+        ©2018 Penn State
       </div>
     </div>
 
