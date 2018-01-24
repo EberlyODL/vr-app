@@ -8,10 +8,49 @@
       :host {
         display: block;
         background-image: url("/assets/images/print_background.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+
+      .home_page_title {
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.1);
+        color: #fff;
+        margin-bottom: 25px;
+      }
+
+      .scene_wrap {
+        display: flex;
+        position: relative;
+        justify-content: center;
+      }
+
+      .scene {
+        background-color: red;
+        color: #fff;
+        height: 300px;
+        width: 300px;
+        margin: 10px;
       }
     </style>
 
-    <h1>Home Page</h1>
+    <div class="home_page_title">
+      <h1>FRNSC:Virtual Crime Scene</h1>
+    </div>
+
+
+    <div class="scene_wrap">
+      <div class="scene">Scene 1</div>
+      <div class="scene">Scene 2</div>
+    </div>
+
+    <div class="scene_wrap">
+      <div class="scene">Scene 3</div>
+      <div class="scene">Scene 4</div>
+    </div>
+
 
   </template>
   <script>
