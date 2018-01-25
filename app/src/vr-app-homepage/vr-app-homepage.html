@@ -2,6 +2,8 @@
 <link rel="import" href="../vr-app-scene/vr-app-scene-list.html">
 <link rel="import" href="../vr-app-scene/vr-app-scene.html">
 <link rel="import" href="../../bower_components/psu-logo/psu-logo.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+
 
 <dom-module id="vr-app-homepage">
   <template>
@@ -19,12 +21,26 @@
         top: 5px;
       }
 
-      .logo_wrap {
+      .nav_wrap {
         background: rgba(0, 0, 0, 0.5);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        margin-bottom: 40px;
       }
 
       .home_page_title {
         color: #fff;
+        font-size: 20px;
+        margin-left: 10px;
+      }
+
+      .menu_button {
+        position: absolute;
+        right: 25px;
       }
 
       .scene_wrap {
@@ -39,11 +55,12 @@
       }
 
       .scene {
-        background-color: lightblue;
+        background-color: white;
         color: #000;
         height: 300px;
         width: 300px;
         margin: 10px;
+        border: solid 6px lightblue;
       }
 
       .app_footer_wrap {
@@ -55,16 +72,22 @@
 
       .app_footer {
         color: #fff;
+        padding-top: 30px;
+        padding-bottom: 30px;
       }
     </style>
 
-    <div class="logo_wrap">
-      <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
+    <div class="nav_wrap">
+      <div class="nav">
+        <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
+        <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
+        <div class="menu_button">
+          <paper-icon-button icon="menu" style="color:#fff;"></paper-icon-button>
+        </div>
+      </div>
     </div>
 
-    <div class="home_page_title">
-      <h1>FRNSC:Virtual Crime Scene</h1>
-    </div>
+
 
     <div class="scene_wrap">
       <div class="scene_row">
@@ -80,7 +103,7 @@
 
     <div class="app_footer_wrap">
       <div class="app_footer">
-        ©2018 Penn State
+        ©2018 Penn State University. All Rights Reserved.
       </div>
     </div>
 
