@@ -77,17 +77,17 @@
       }
     </style>
 
+    <div id="nav_wrap"></div>
+
     <div class="nav_wrap">
       <div class="nav">
         <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
         <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
         <div class="menu_button">
-          <paper-icon-button icon="menu" style="color:#fff;"></paper-icon-button>
+          <paper-icon-button id="menu_btn" onclick="openDialog()" icon="menu" style="color:#fff;"></paper-icon-button>
         </div>
       </div>
     </div>
-
-
 
     <div class="scene_wrap">
       <div class="scene_row">
@@ -112,5 +112,11 @@
     Polymer({
       is: 'vr-app-homepage'
     });
+
+    document.getElementById("menu_btn").addEventListener("click", openDialog);
+    function openDialog() {
+      console.log('Hello, this button works!');
+    }
+
   </script>
 </dom-module>
