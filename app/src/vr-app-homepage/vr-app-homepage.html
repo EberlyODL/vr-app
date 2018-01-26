@@ -3,6 +3,7 @@
 <link rel="import" href="../vr-app-scene/vr-app-scene.html">
 <link rel="import" href="../../bower_components/psu-logo/psu-logo.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 
 
 <dom-module id="vr-app-homepage">
@@ -84,10 +85,14 @@
         <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
         <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
         <div class="menu_button">
-          <paper-icon-button id="menu_btn" onclick="openDialog()" icon="menu" style="color:#fff;"></paper-icon-button>
+          <paper-icon-button id="menu_btn" on-click="main_menu.openDialog()" icon="menu" style="color:#fff;"></paper-icon-button>
         </div>
       </div>
     </div>
+
+    <paper-dialog id="main_menu">
+      This is my dialog box.
+    </paper-dialog>
 
     <div class="scene_wrap">
       <div class="scene_row">
@@ -110,13 +115,17 @@
   </template>
   <script>
     Polymer({
-      is: 'vr-app-homepage'
-    });
-
-    document.getElementById("menu_btn").addEventListener("click", openDialog);
-    function openDialog() {
+      is: 'vr-app-homepage',
+      ready: function () {
+        this.$$("#menu_btn").addEventListener("click", this.openDialog);
+      },
+      openDialog: function () {
       console.log('Hello, this button works!');
     }
+    });
+
+
+
 
   </script>
 </dom-module>
