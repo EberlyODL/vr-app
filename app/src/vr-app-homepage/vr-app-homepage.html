@@ -3,7 +3,12 @@
 <link rel="import" href="../vr-app-scene/vr-app-scene.html">
 <link rel="import" href="../../bower_components/psu-logo/psu-logo.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+
+
 
 
 <dom-module id="vr-app-homepage">
@@ -33,15 +38,34 @@
         margin-bottom: 40px;
       }
 
-      .home_page_title {
-        color: #fff;
-        font-size: 20px;
-        margin-left: 10px;
-      }
 
       .menu_button {
         position: absolute;
         right: 25px;
+      }
+
+      .menu_dialog paper-dialog {
+        height: 500px;
+        width: 100%;
+      }
+
+      .close_button {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+
+      .dialog_utility_buttons {
+        background-color: red;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .home_page_title {
+        color: #fff;
+        font-size: 20px;
+        margin-left: 10px;
       }
 
       .scene_wrap {
@@ -78,6 +102,26 @@
       }
     </style>
 
+    <div class="menu_dialog">
+      <paper-dialog id="mainMenu" with-backdrop>
+        <div class="close_button">
+          <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+        </div>
+        <h2>This is my Header</h2>
+        <paper-dialog-scrollable>
+          This is my dialog...
+        </paper-dialog-scrollable>
+        <div class="dialog_utility_buttons">
+          <paper-button><iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
+          <paper-button><iron-icon icon="face"></iron-icon>Suspects</paper-button>
+          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
+        </div>
+      </paper-dialog>
+    </div>
+
     <div id="nav_wrap"></div>
 
     <div class="nav_wrap">
@@ -85,14 +129,10 @@
         <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
         <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
         <div class="menu_button">
-          <paper-icon-button id="menu_btn" on-click="main_menu.openDialog()" icon="menu" style="color:#fff;"></paper-icon-button>
+          <paper-icon-button id="menu_btn" icon="menu" style="color:#fff;"></paper-icon-button>
         </div>
       </div>
     </div>
-
-    <paper-dialog id="main_menu">
-      This is my dialog box.
-    </paper-dialog>
 
     <div class="scene_wrap">
       <div class="scene_row">
@@ -116,12 +156,14 @@
   <script>
     Polymer({
       is: 'vr-app-homepage',
-      ready: function () {
-        this.$$("#menu_btn").addEventListener("click", this.openDialog);
+      properties: {
       },
-      openDialog: function () {
-      console.log('Hello, this button works!');
-    }
+
+      ready: function () {
+        this.$$("#menu_btn").addEventListener("click", (e) => {
+          this.$$('#mainMenu').toggle();
+        });
+      }
     });
 
 
