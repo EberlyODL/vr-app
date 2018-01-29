@@ -44,6 +44,11 @@
         right: 25px;
       }
 
+      .tools_button {
+        position: absolute;
+        right: 70px;
+      }
+
       .menu_dialog paper-dialog {
         height: 500px;
         width: 100%;
@@ -66,6 +71,12 @@
         color: #fff;
         font-size: 20px;
         margin-left: 10px;
+      }
+
+      @media (max-width: 460px) { 
+        .home_page_title {
+          font-size: 16px;
+        }
       }
 
       .scene_wrap {
@@ -112,12 +123,18 @@
           This is my dialog...
         </paper-dialog-scrollable>
         <div class="dialog_utility_buttons">
-          <paper-button><iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
-          <paper-button><iron-icon icon="face"></iron-icon>Suspects</paper-button>
-          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
-          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
-          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
-          <paper-button><iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button>
+            <iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
+          <paper-button>
+            <iron-icon icon="face"></iron-icon>Suspects</paper-button>
+          <paper-button>
+            <iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button>
+            <iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button>
+            <iron-icon icon="close"></iron-icon>Close</paper-button>
+          <paper-button>
+            <iron-icon icon="close"></iron-icon>Close</paper-button>
         </div>
       </paper-dialog>
     </div>
@@ -130,6 +147,9 @@
         <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
         <div class="menu_button">
           <paper-icon-button id="menu_btn" icon="menu" style="color:#fff;"></paper-icon-button>
+        </div>
+        <div class="tools_button">
+          <paper-icon-button id="tools_btn" icon="build" style="color:#fff;"></paper-icon-button>
         </div>
       </div>
     </div>
