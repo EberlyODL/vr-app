@@ -51,7 +51,7 @@
 
       .menu_dialog paper-dialog {
         height: 500px;
-        width: 100%;
+        width: 80%;
       }
 
       .close_button {
@@ -60,7 +60,6 @@
       }
 
       .dialog_utility_buttons {
-        background-color: red;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -128,14 +127,26 @@
           <paper-button>
             <iron-icon icon="face"></iron-icon>Suspects</paper-button>
           <paper-button>
-            <iron-icon icon="close"></iron-icon>Close</paper-button>
+            <iron-icon icon="favorite"></iron-icon>Favorite</paper-button>
           <paper-button>
-            <iron-icon icon="close"></iron-icon>Close</paper-button>
+            <iron-icon icon="shopping-cart"></iron-icon>Cart</paper-button>
           <paper-button>
-            <iron-icon icon="close"></iron-icon>Close</paper-button>
+            <iron-icon icon="star"></iron-icon>Star</paper-button>
           <paper-button>
-            <iron-icon icon="close"></iron-icon>Close</paper-button>
+            <iron-icon icon="accessibility"></iron-icon>Suspects</paper-button>
         </div>
+      </paper-dialog>
+    </div>
+
+    <div class="tools_dialog">
+      <paper-dialog id="toolsMenu" with-backdrop>
+        <div class="close_button">
+          <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+        </div>
+        <h2>This is my Header</h2>
+        <paper-dialog-scrollable>
+          This is my dialog...
+        </paper-dialog-scrollable>
       </paper-dialog>
     </div>
 
@@ -183,7 +194,11 @@
         this.$$("#menu_btn").addEventListener("click", (e) => {
           this.$$('#mainMenu').toggle();
         });
-      }
+      },
+
+
+
+
     });
 
 
