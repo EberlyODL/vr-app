@@ -50,19 +50,22 @@
       }
 
       .menu_dialog paper-dialog {
-        background-image: url("/assets/images/menu_background.png");
+        background-image: url("/assets/images/menu_background_1.png");
         background-size: cover;
         width: 80%;
       }
 
-      .menu_body_wrap {
-        display: flex;
-        flex-wrap: wrap;
+      .dialog_utility_buttons {
+        margin-top: 15px;
       }
 
       .menu_body {
-        padding: 15px;
+        border: solid 1px #000;
+        margin-top: 10px;
+        padding: 20px;
         font-size: 16px;
+        width: 70%;
+        border-radius: 7px;
       }
 
       .tools_button {
@@ -148,18 +151,7 @@
               convallis at tellus.
             </div>
             <div class="dialog_utility_buttons">
-              <paper-button>
-                <iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
-              <paper-button>
-                <iron-icon icon="face"></iron-icon>Suspects</paper-button>
-              <paper-button>
-                <iron-icon icon="favorite"></iron-icon>Favorite</paper-button>
-              <paper-button>
-                <iron-icon icon="shopping-cart"></iron-icon>Cart</paper-button>
-              <paper-button>
-                <iron-icon icon="star"></iron-icon>Star</paper-button>
-              <paper-button>
-                <iron-icon icon="accessibility"></iron-icon>Suspects</paper-button>
+              <paper-button><iron-icon icon="face"></iron-icon>Account</paper-button>
             </div>
           </div>
         </paper-dialog-scrollable>
