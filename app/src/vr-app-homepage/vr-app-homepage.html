@@ -6,7 +6,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 
 
 
@@ -44,26 +44,45 @@
         right: 25px;
       }
 
+      .menu_title {
+        font-size: 26px;
+        margin: 25px 12px -5px;
+      }
+
+      .menu_dialog paper-dialog {
+        background-image: url("/assets/images/menu_background.png");
+        background-size: cover;
+        width: 80%;
+      }
+
+      .menu_body_wrap {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .menu_body {
+        padding: 15px;
+        font-size: 16px;
+      }
+
       .tools_button {
         position: absolute;
         right: 70px;
       }
 
-      .menu_dialog paper-dialog {
-        height: 500px;
+      .tools_dialog paper-dialog {
+        background-image: url("/assets/images/menu_background.png");
+        background-size: cover;
         width: 80%;
       }
 
       .close_button {
         display: flex;
         flex-direction: row-reverse;
-      }
-
-      .dialog_utility_buttons {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: center;
+        margin-top: 0;
+        background-color: #20427b;
+        color: #fff;
+        padding: 8px;
       }
 
       .home_page_title {
@@ -72,7 +91,7 @@
         margin-left: 10px;
       }
 
-      @media (max-width: 460px) { 
+      @media (max-width: 460px) {
         .home_page_title {
           font-size: 16px;
         }
@@ -117,24 +136,33 @@
         <div class="close_button">
           <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
         </div>
-        <h2>This is my Header</h2>
+        <div class="menu_title">Welcome to FRNSC | Virtual Crime Scene</div>
         <paper-dialog-scrollable>
-          This is my dialog...
+          <div class="menu_body_wrap">
+            <div class="menu_body">
+              Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+              at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec,
+              egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus.
+              Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor
+              lectus nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed,
+              convallis at tellus.
+            </div>
+            <div class="dialog_utility_buttons">
+              <paper-button>
+                <iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
+              <paper-button>
+                <iron-icon icon="face"></iron-icon>Suspects</paper-button>
+              <paper-button>
+                <iron-icon icon="favorite"></iron-icon>Favorite</paper-button>
+              <paper-button>
+                <iron-icon icon="shopping-cart"></iron-icon>Cart</paper-button>
+              <paper-button>
+                <iron-icon icon="star"></iron-icon>Star</paper-button>
+              <paper-button>
+                <iron-icon icon="accessibility"></iron-icon>Suspects</paper-button>
+            </div>
+          </div>
         </paper-dialog-scrollable>
-        <div class="dialog_utility_buttons">
-          <paper-button>
-            <iron-icon icon="fingerprint"></iron-icon>Prints</paper-button>
-          <paper-button>
-            <iron-icon icon="face"></iron-icon>Suspects</paper-button>
-          <paper-button>
-            <iron-icon icon="favorite"></iron-icon>Favorite</paper-button>
-          <paper-button>
-            <iron-icon icon="shopping-cart"></iron-icon>Cart</paper-button>
-          <paper-button>
-            <iron-icon icon="star"></iron-icon>Star</paper-button>
-          <paper-button>
-            <iron-icon icon="accessibility"></iron-icon>Suspects</paper-button>
-        </div>
       </paper-dialog>
     </div>
 
@@ -143,10 +171,15 @@
         <div class="close_button">
           <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
         </div>
-        <h2>This is my Header</h2>
+        <h2>Welcome to the Tools Menu</h2>
         <paper-dialog-scrollable>
-          This is my dialog...
+          Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+          at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas
+          non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus. Curabitur aliquet
+          quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh.
+          Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
         </paper-dialog-scrollable>
+
       </paper-dialog>
     </div>
 
@@ -194,7 +227,15 @@
         this.$$("#menu_btn").addEventListener("click", (e) => {
           this.$$('#mainMenu').toggle();
         });
+
+        this.$$("#tools_btn").addEventListener("click", (e) => {
+          this.$$('#toolsMenu').toggle();
+        });
+
       },
+
+
+
 
 
 
