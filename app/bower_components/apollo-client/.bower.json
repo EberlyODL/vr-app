@@ -35,6 +35,5 @@
   },
   "_source": "https://github.com/reach-digital/polymer-apollo-client.git",
   "_target": "^2.0.0",
-  "_originalSource": "reach-digital/polymer-apollo-client",
-  "_direct": true
+  "_originalSource": "reach-digital/polymer-apollo-client"
 }

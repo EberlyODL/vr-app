@@ -70,7 +70,7 @@
       }
 
       .tools_dialog paper-dialog {
-        background-image: url("/assets/images/menu_background.png");
+        background-image: url("/assets/images/menu_background_1.png");
         background-size: cover;
         width: 80%;
       }
@@ -108,12 +108,8 @@
       }
 
       .scene {
-        background-color: white;
         color: #000;
-        height: 300px;
-        width: 300px;
         margin: 10px;
-        border: solid 6px lightblue;
       }
 
       .app_footer_wrap {
@@ -146,7 +142,7 @@
               lectus nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed,
               convallis at tellus.
             </div>
-            <div class="dialog_utility_buttons">
+            <div class="dialog_utility_buttons"></div>
               <paper-button><iron-icon icon="face"></iron-icon>Account</paper-button>
             </div>
           </div>
@@ -185,15 +181,12 @@
 
     <div class="scene_wrap">
       <div class="scene_row">
-        <div class="scene">Scene 1</div>
-        <div class="scene">Scene 2</div>
-      </div>
-
-      <div class="scene_row">
-        <div class="scene">Scene 3</div>
-        <div class="scene">Scene 4</div>
+        <div class="scene">
+          <vr-app-scene-list></vr-app-scene-list>
+        </div>
       </div>
     </div>
+
 
     <div class="app_footer_wrap">
       <div class="app_footer">

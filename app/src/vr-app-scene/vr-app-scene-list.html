@@ -1,38 +1,67 @@
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="vr-app-scene-list">
   <template>
     <style>
       :host {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      iron-list {
-        flex: 1 1 auto;
+        display:block;
       }
     </style>
 
 
-    <graphql-query>
-      query { nodeQuery(offset: 0 limit: 10 filter: {type: "Scene"} ) { count entities { entityUuid ... on NodeScene { title body
-      { processed } fieldImage { ... on FieldNodeFieldImage { entity { thumbnail { alt title derivative(style: "large") {
-      url } } } } } uid { entity { name } } } } } }
+    <graphql-query result="{{data}}">
+      query {
+        nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
+          count
+          entities {
+            entityUuid
+            ... on NodeScene {
+              title
+              body {
+                value: processed
+              }
+              image: fieldImage {
+                ... on FieldNodeFieldImage {
+                  entity {
+                    thumbnail {
+                      alt
+                      title
+                      style: derivative(style: "scene_image") {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+              uid {
+                entity {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
     </graphql-query>
 
+    <template is="dom-if" if="[[data]]">
+        <template is="dom-repeat" items="[[data.nodeQuery.entities]]">
+            <paper-card heading="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" elevation="1" aniamted-shadow="false">
+              <div class="card-actions">
+                <a href="#">View Scene</a>
+              </div>
+            </paper-card>
+        </template>
+    </template>
 
 
 
 
-    <iron-list items="[[scenes]]">
-      <template>
-        <div>
-          [[item.attributes.title]]
-        </div>
-      </template>
-    </iron-list>
+
+
+  
   </template>
   <script>
     Polymer({
