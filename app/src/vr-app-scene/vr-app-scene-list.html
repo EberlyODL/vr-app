@@ -8,6 +8,7 @@
       :host {
         display:block;
       }
+
     </style>
 
 
@@ -46,13 +47,14 @@
       }
     </graphql-query>
 
+
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.nodeQuery.entities]]">
-            <paper-card heading="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" elevation="1" aniamted-shadow="false">
-              <div class="card-actions">
-                <a href="#">View Scene</a>
-              </div>
-            </paper-card>
+              <paper-card heading="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" elevation="1" aniamted-shadow="false">
+                <div class="card-actions">
+                  <a href="#">View Scene</a>
+                </div>
+              </paper-card>
         </template>
     </template>
 
