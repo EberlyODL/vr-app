@@ -8,7 +8,12 @@
       :host {
         display:block;
       }
+     
 
+      .scn {
+        display: inline-flex;
+      }
+      
     </style>
 
 
@@ -50,11 +55,13 @@
 
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.nodeQuery.entities]]">
+          <div class="scn">
               <paper-card heading="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" elevation="1" aniamted-shadow="false">
-                <div class="card-actions">
+                <div class="visit">
                   <a href="#">View Scene</a>
                 </div>
               </paper-card>
+            </div>
         </template>
     </template>
 
