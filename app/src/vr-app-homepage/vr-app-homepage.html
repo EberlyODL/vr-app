@@ -51,10 +51,6 @@
         width: 80%;
       }
 
-      .dialog_utility_buttons {
-        margin-top: 15px;
-      }
-
       .menu_body {
         border: solid 1px #000;
         margin-top: 10px;
@@ -62,6 +58,10 @@
         font-size: 18px;
         width: 70%;
         border-radius: 7px;
+      }
+
+      .dialog_utility_buttons {
+        margin-top: 15px;
       }
 
       .tools_button {
@@ -102,7 +102,6 @@
         display: flex;
         justify-content: center;
         height: 75px;
-        clear: both;
       }
 
       .app_footer {
@@ -110,13 +109,6 @@
         padding-top: 30px;
         padding-bottom: 30px;
       }
-
-      .scncontain {
-        background-color: yellow;
-        display: flex;
-        justify-content: center;
-      }
-
     </style>
 
     <div class="menu_dialog">
@@ -126,23 +118,22 @@
         </div>
         <div class="menu_title">Welcome to FRNSC | Virtual Crime Scene</div>
         <paper-dialog-scrollable>
-          <div class="menu_body_wrap">
-            <div class="menu_body">
-              Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
-              at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec,
-              egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus.
-              Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor
-              lectus nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed,
-              convallis at tellus.
-            </div>
-            <div class="dialog_utility_buttons">
-              <paper-button>
-                <iron-icon icon="face"></iron-icon>Account</paper-button>
-            </div>
+          <div class="menu_body">
+            Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+            at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas
+            non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus. Curabitur
+            aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus
+            nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis
+            at tellus.
+          </div>
+          <div class="dialog_utility_buttons">
+            <paper-button>
+              <iron-icon icon="face"></iron-icon>Account</paper-button>
           </div>
         </paper-dialog-scrollable>
       </paper-dialog>
     </div>
+
 
     <div class="tools_dialog">
       <paper-dialog id="toolsMenu" with-backdrop>
@@ -182,11 +173,11 @@
       </div>
     </div>
 
-    <div class="scncontain">
-      <div class="scnwrap">
-        <vr-app-scene-list></vr-app-scene-list>
-      </div>
-    </div>
+
+
+    <vr-app-scene-list></vr-app-scene-list>
+
+
 
 
     <div class="app_footer_wrap">

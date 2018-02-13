@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../vr-app-components/vr-app-card.html">
 
 <dom-module id="vr-app-scene-list">
   <template>
@@ -8,11 +8,26 @@
       :host {
         display:block;
       }
-     
 
       .scn {
-        display: inline-flex;
+        width: calc(100% - 2em);
+        padding: 1em;
       }
+
+      @media screen and (min-width: 700px){
+        .scn {
+          width: calc(40% - 2em);
+        }
+      }
+
+      #scnwrap {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1160px;
+        justify-content: center;
+        margin: 10px auto 45px;
+      }
+
       
     </style>
 
@@ -52,18 +67,15 @@
       }
     </graphql-query>
 
-
+  <div id="scnwrap">
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.nodeQuery.entities]]">
           <div class="scn">
-              <paper-card heading="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" elevation="1" aniamted-shadow="false">
-                <div class="visit">
-                  <a href="#">View Scene</a>
-                </div>
-              </paper-card>
+              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="#"></vr-app-card>
             </div>
         </template>
     </template>
+  </div>
 
 
 
