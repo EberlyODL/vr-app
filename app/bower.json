@@ -14,7 +14,8 @@
     "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^2.1.0",
     "apollo-client": "reach-digital/polymer-apollo-client#^2.0.0",
     "psu-logo": "cgldevel/psu-logo",
-    "paper-card": "PolymerElements/paper-card#^2.0.0"
+    "paper-card": "PolymerElements/paper-card#^2.0.0",
+    "app-route": "PolymerElements/app-route#^2.0.3"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
