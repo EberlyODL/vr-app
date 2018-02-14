@@ -9,9 +9,9 @@
         display: block;
       }
     </style>
-    <graphql-query result="{{data}}" variables="[[sceneData]]">
+    <!-- <graphql-query result="{{data}}" variables="[[sceneData]]">
         query {
-          sceneQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
+          sceneQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene", id}) {
             entities {
               entityUuid
               ... on NodeScene {
@@ -41,7 +41,7 @@
             }
           }
         }
-      </graphql-query>
+      </graphql-query> -->
     <!-- <vr-app-scene-display scene="[[scene]]"></vr-app-scene-display>
     youasdf -->
     <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}">
