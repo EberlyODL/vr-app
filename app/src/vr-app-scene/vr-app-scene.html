@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="vr-app-scene-display.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 
 <dom-module id="vr-app-scene">
   <template>
@@ -8,7 +9,45 @@
         display: block;
       }
     </style>
-    <vr-app-scene-display scene="[[scene]]"></vr-app-scene-display>
+    <graphql-query result="{{data}}" variables="[[sceneData]]">
+        query {
+          sceneQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
+            entities {
+              entityUuid
+              ... on NodeScene {
+                title
+                body {
+                  value: processed
+                }
+                image: fieldImage {
+                  ... on FieldNodeFieldImage {
+                    entity {
+                      thumbnail {
+                        alt
+                        title
+                        style: derivative(style: "scene_image") {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+                uid {
+                  entity {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      </graphql-query>
+    <!-- <vr-app-scene-display scene="[[scene]]"></vr-app-scene-display>
+    youasdf -->
+    <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}">
+    </app-route>
+
+
   </template>
   <script>
     Polymer({
@@ -24,6 +63,9 @@
         scene: {
           type: Object,
           value: {}
+        },
+        route: {
+          type: Object
         }
       },
       attached: function () {

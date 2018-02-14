@@ -34,7 +34,7 @@
 
     <graphql-query result="{{data}}">
       query {
-        nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
+        sceneListQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
           count
           entities {
             entityUuid
