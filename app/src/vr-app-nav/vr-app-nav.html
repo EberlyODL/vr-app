@@ -1,0 +1,183 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/psu-logo/psu-logo.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+
+
+<dom-module id="vr-app-nav">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            psu-logo {
+                max-width: 15%;
+                top: 5px;
+            }
+
+            .nav_wrap {
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            .nav {
+                display: flex;
+                align-items: center;
+                height: 80px;
+                margin-bottom: 40px;
+            }
+
+
+            .menu_button {
+                position: absolute;
+                right: 25px;
+            }
+
+            .menu_title {
+                font-size: 26px;
+                margin: 25px 12px -5px;
+            }
+
+            .menu_dialog paper-dialog {
+                background-image: url("/assets/images/menu_background_1.png");
+                background-size: cover;
+                width: 80%;
+            }
+
+            .menu_body {
+                border: solid 1px #000;
+                margin-top: 10px;
+                padding: 20px;
+                font-size: 18px;
+                width: 70%;
+                border-radius: 7px;
+            }
+
+            .dialog_utility_buttons {
+                margin-top: 15px;
+            }
+
+            .tools_button {
+                position: absolute;
+                right: 70px;
+            }
+
+            .tools_dialog paper-dialog {
+                background-image: url("/assets/images/menu_background_1.png");
+                background-size: cover;
+                width: 80%;
+            }
+
+            .close_button {
+                display: flex;
+                flex-direction: row-reverse;
+                margin-top: 0;
+                background-color: #20427b;
+                color: #fff;
+                padding: 8px;
+            }
+
+            .home_page_title {
+                color: #fff;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+
+            @media (max-width: 460px) {
+                .home_page_title {
+                    font-size: 16px;
+                }
+            }
+            
+        </style>
+
+<div class="menu_dialog">
+    <paper-dialog id="mainMenu" with-backdrop>
+      <div class="close_button">
+        <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+      </div>
+      <div class="menu_title">Welcome to FRNSC | Virtual Crime Scene</div>
+      <paper-dialog-scrollable>
+        <div class="menu_body">
+          Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+          at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas
+          non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus. Curabitur
+          aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus
+          nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis
+          at tellus.
+        </div>
+        <div class="dialog_utility_buttons">
+          <paper-button>
+            <iron-icon icon="face"></iron-icon>Account</paper-button>
+        </div>
+      </paper-dialog-scrollable>
+    </paper-dialog>
+  </div>
+
+
+  <div class="tools_dialog">
+    <paper-dialog id="toolsMenu" with-backdrop>
+      <div class="close_button">
+        <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+      </div>
+      <div class="menu_title">Welcome to the Tools Menu</div>
+      <paper-dialog-scrollable>
+        <div class="menu_body_wrap">
+          <div class="menu_body">
+            Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+            at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec,
+            egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus.
+            Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor
+            lectus nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed,
+            convallis at tellus.
+          </div>
+          <div class="dialog_utility_buttons">
+            <paper-button>
+              <iron-icon icon="face"></iron-icon>Account</paper-button>
+          </div>
+        </div>
+      </paper-dialog-scrollable>
+    </paper-dialog>
+  </div>
+
+        <div class="nav_wrap">
+            <div class="nav">
+                <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
+                <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
+                <div class="menu_button">
+                    <paper-icon-button id="menu_btn" icon="menu" style="color:#fff;"></paper-icon-button>
+                </div>
+                <div class="tools_button">
+                    <paper-icon-button id="tools_btn" icon="build" style="color:#fff;"></paper-icon-button>
+                </div>
+            </div>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'vr-app-nav',
+            properties: {
+            },
+
+            ready: function () {
+                this.$$("#menu_btn").addEventListener("click", (e) => {
+                    this.$$('#mainMenu').toggle();
+                });
+
+                this.$$("#tools_btn").addEventListener("click", (e) => {
+                    this.$$('#toolsMenu').toggle();
+                });
+
+            },
+
+
+
+
+
+        });
+    </script>
+</dom-module>
