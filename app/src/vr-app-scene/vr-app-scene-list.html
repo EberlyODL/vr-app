@@ -1,26 +1,88 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../vr-app-components/vr-app-card.html">
 
 <dom-module id="vr-app-scene-list">
   <template>
     <style>
       :host {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
+        display:block;
       }
 
-      iron-list {
-        flex: 1 1 auto;
+      .scn {
+        width: calc(100% - 2em);
+        padding: 1em;
       }
+
+      @media screen and (min-width: 700px){
+        .scn {
+          width: calc(40% - 2em);
+        }
+      }
+
+      #scnwrap {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1160px;
+        justify-content: center;
+        margin: 10px auto 45px;
+      }
+
+      
     </style>
-    <iron-list items="[[scenes]]">
-      <template>
-        <div>
-          [[item.attributes.title]]
-        </div>
-      </template>
-    </iron-list>
+
+
+    <graphql-query result="{{data}}">
+      query {
+        sceneListQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
+          count
+          entities {
+            entityUuid
+            ... on NodeScene {
+              title
+              body {
+                value: processed
+              }
+              image: fieldImage {
+                ... on FieldNodeFieldImage {
+                  entity {
+                    thumbnail {
+                      alt
+                      title
+                      style: derivative(style: "scene_image") {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+              uid {
+                entity {
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    </graphql-query>
+
+  <div id="scnwrap">
+    <template is="dom-if" if="[[data]]">
+        <template is="dom-repeat" items="[[data.sceneListQuery.entities]]">
+          <div class="scn">
+              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="#"></vr-app-card>
+            </div>
+        </template>
+    </template>
+  </div>
+
+
+
+
+
+
+  
   </template>
   <script>
     Polymer({

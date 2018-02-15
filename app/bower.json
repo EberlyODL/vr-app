@@ -2,14 +2,20 @@
   "name": "vr-app",
   "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer": "Polymer/polymer#^1.9",
     "view-json": "zvakanaka/view-json#^2.0.0",
     "iron-pages": "PolymerElements/iron-pages#^2.0.1",
     "iron-ajax": "PolymerElements/iron-ajax#^2.0.8",
     "oauth-authorizator": "Festify/oauth-authorizator#^0.3.3",
     "iron-meta": "PolymerElements/iron-meta#^2.0.4",
     "aframe": "aframevr/aframe#^0.7.1",
-    "iron-list": "PolymerElements/iron-list#^2.0.12"
+    "iron-list": "PolymerElements/iron-list#^2.0.12",
+    "paper-dialog": "PolymerElements/paper-dialog#^2.0.1",
+    "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^2.1.0",
+    "apollo-client": "reach-digital/polymer-apollo-client#^2.0.0",
+    "psu-logo": "cgldevel/psu-logo",
+    "paper-card": "PolymerElements/paper-card#^2.0.0",
+    "app-route": "PolymerElements/app-route#^2.0.3"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
