@@ -8,6 +8,12 @@
       :host {
         display: block;
       }
+
+      .scene_display {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 45px;
+      }
     </style>
     <!-- <graphql-query result="{{data}}" variables="[[sceneData]]">
         query {
@@ -42,10 +48,15 @@
           }
         }
       </graphql-query> -->
-    <!-- <vr-app-scene-display scene="[[scene]]"></vr-app-scene-display>
-    youasdf -->
+
     <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}">
     </app-route>
+
+    <div class="scene_display">
+      <div class="room_image">
+        <img src="https://picsum.photos/1200">
+      </div>
+    </div>
 
 
   </template>
@@ -69,7 +80,7 @@
         }
       },
       attached: function () {
-        this.fire('get-scene', {id: this.id, el: this});
+        this.fire('get-scene', { id: this.id, el: this });
       }
     });
   </script>
