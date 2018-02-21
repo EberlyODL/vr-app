@@ -1,6 +1,4 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="vr-app-scene-display.html">
-<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 
 <dom-module id="vr-app-scene">
   <template>
@@ -8,55 +6,16 @@
       :host {
         display: block;
       }
-
-      .scene_display {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 45px;
-      }
     </style>
-    <!-- <graphql-query result="{{data}}" variables="[[sceneData]]">
-        query {
-          sceneQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene", id}) {
-            entities {
-              entityUuid
-              ... on NodeScene {
-                title
-                body {
-                  value: processed
-                }
-                image: fieldImage {
-                  ... on FieldNodeFieldImage {
-                    entity {
-                      thumbnail {
-                        alt
-                        title
-                        style: derivative(style: "scene_image") {
-                          url
-                        }
-                      }
-                    }
-                  }
-                }
-                uid {
-                  entity {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-      </graphql-query> -->
 
-    <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}">
-    </app-route>
 
-    <div class="scene_display">
-      <div class="room_image">
-        <img src="https://picsum.photos/1200">
-      </div>
-    </div>
+    <iron-ajax auto url="[[_generateUrl(sceneData.scene)]]" handle-as="json" on-response="handleResponse"></iron-ajax>
+
+
+
+    <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}"></app-route>
+
+
 
 
   </template>
@@ -79,9 +38,11 @@
           type: Object
         }
       },
-      attached: function () {
-        this.fire('get-scene', { id: this.id, el: this });
+
+      _generateUrl: function(scene) {
+        return `http://localhost/api/node/scene/${scene}`;
       }
+
     });
   </script>
 </dom-module>

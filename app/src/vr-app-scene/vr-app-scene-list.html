@@ -71,7 +71,7 @@
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.sceneListQuery.entities]]">
           <div class="scn">
-              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="[[_generateLink(item.entities.entityUuid)]]"></vr-app-card>
+              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="[[_generateLink(item.entityUuid)]]"></vr-app-card>
             </div>
         </template>
     </template>
