@@ -71,7 +71,7 @@
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.sceneListQuery.entities]]">
           <div class="scn">
-              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="#"></vr-app-card>
+              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="[[_generateLink(item.entityUuid)]]"></vr-app-card>
             </div>
         </template>
     </template>
@@ -88,22 +88,12 @@
     Polymer({
       is: 'vr-app-scene-list',
       properties: {
-        /**
-         * Options
-         *  - grid
-         */
-        display: {
-          type: String,
-          value: 'grid'
-        },
-        scenes: {
-          type: Array,
-          value: ''
-        }
+
       },
-      ready: function () {
-        this.fire('get-scene-list', { el: this });
+      _generateLink: function (uuid) {
+        return `/scene/${uuid}`;
       }
+   
     });
   </script>
 </dom-module>
