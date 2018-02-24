@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-mutation.html">
+
+<dom-module id="vr-app-scene-create-form">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+        max-width: 50em;
+        background: white;
+        padding: 1em;
+      }
+    </style>
+
+    <h2>Create Scene</h2>
+
+    <paper-input label="title" value="{{_newSceneData.title}}"></paper-input>
+    <paper-textarea label="body" value="{{_newSceneData.body}}"></paper-textarea>
+    <paper-input label="image" value="{{_newSceneData.image}}"></paper-input>
+
+    <paper-button raised on-click="_createScene">Create Scene</paper-button>
+
+    <graphql-mutation id="apiCreateScene" variables="[[_newSceneData]]" result-changed="_resultChangedHandler">
+        mutation CreateScene(
+          $title: String!,
+          $body: String!,
+          $image: String!,
+        ) {
+          createScene(
+            title: $title,
+            body: $body,
+            image: $image,
+          ) {
+            id
+          }
+        }
+      </graphql-mutation>
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-scene-create-form',
+      properties: {
+        _newSceneData: {
+          type: Object,
+          value: {}
+        }
+      },
+      _createScene: function () {
+        this.$.apiCreateScene.execute();
+        this._newSceneData = {};
+      }
+    });
+  </script>
+</dom-module>

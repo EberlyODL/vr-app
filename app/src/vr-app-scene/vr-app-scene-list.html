@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-mutation.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../vr-app-components/vr-app-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="vr-app-scene-list">
   <template>
@@ -32,50 +34,30 @@
     </style>
 
 
+    </graphql-query>
     <graphql-query result="{{data}}">
       query {
-        sceneListQuery: nodeQuery(offset: 0, limit: 10, filter: {type: "Scene"}) {
-          count
-          entities {
-            entityUuid
-            ... on NodeScene {
-              title
-              body {
-                value: processed
-              }
-              image: fieldImage {
-                ... on FieldNodeFieldImage {
-                  entity {
-                    thumbnail {
-                      alt
-                      title
-                      style: derivative(style: "scene_image") {
-                        url
-                      }
-                    }
-                  }
-                }
-              }
-              uid {
-                entity {
-                  name
-                }
-              }
-            }
-          }
+        allScenes {
+          id
+          title
+          image
         }
       }
     </graphql-query>
 
   <div id="scnwrap">
     <template is="dom-if" if="[[data]]">
-        <template is="dom-repeat" items="[[data.sceneListQuery.entities]]">
+        <template is="dom-repeat" items="[[data.allScenes]]">
           <div class="scn">
-              <vr-app-card title="[[item.title]]" image="[[item.image.entity.thumbnail.style.url]]" url="[[_generateLink(item.entityUuid)]]"></vr-app-card>
+              <vr-app-card title="[[item.title]]" image="[[item.image]]" url="[[_generateLink(item.id)]]"></vr-app-card>
             </div>
         </template>
     </template>
   </div>
+
+  
+  <paper-button raised on-click="_createNewScene">Add New Scene</paper-button>
+  
 
 
 
@@ -88,12 +70,10 @@
     Polymer({
       is: 'vr-app-scene-list',
       properties: {
-
       },
       _generateLink: function (uuid) {
         return `/scene/${uuid}`;
-      }
-   
+      },
     });
   </script>
 </dom-module>

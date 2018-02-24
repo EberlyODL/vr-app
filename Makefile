@@ -7,5 +7,9 @@ start:
 down:
 	docker-compose down
 
+server_deploy:
+	cd server
+	graphcool-framework deploy --stage dev
+
 top:
 	docker-compose top
