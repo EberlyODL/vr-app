@@ -1,13 +1,23 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+<link rel="import" href="../../bower_components/html-echo/html-echo.html">
+<link rel="import" href="../a-frame/a-frame.html">
 
 <dom-module id="vr-app-scene">
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
         background: gray;
         overflow: hidden;
+        position: relative;
+        min-height: calc(100vh - var(--nav-height));
+      }
+
+      iframe {
+        display: flex;
+        flex: 1 1 auto;
       }
     </style>
 
@@ -24,9 +34,8 @@
 
     
     <template is="dom-if" if="[[scene.data]]">
-      <h1>[[scene.data.title]]</h1>
+      <iframe src$="[[scene.data.body]]"></iframe>
     </template>
-    
 
 
   </template>

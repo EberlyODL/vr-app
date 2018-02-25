@@ -6,7 +6,6 @@
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 
-
 <dom-module id="vr-app-nav">
     <template>
         <style>
@@ -14,7 +13,7 @@
                 display: block;
             }
 
-            psu-logo {
+            #psu-logo {
                 max-width: 15%;
                 top: 5px;
             }
@@ -27,7 +26,7 @@
             .nav {
                 display: flex;
                 align-items: center;
-                height: 80px;
+                height: var(--nav-height);
             }
 
             .menu_button {
@@ -144,7 +143,7 @@
 
         <div class="nav_wrap">
             <div class="nav">
-                <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
+                <a id="psu-logo" href="/"><psu-logo college="Eberly College of Science"></psu-logo></a>
                 <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
                 <div class="menu_button">
                     <paper-icon-button id="menu_btn" icon="menu" style="color:#fff;"></paper-icon-button>

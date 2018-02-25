@@ -1,13 +1,13 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/apollo-client/graphql-client.html">
+<script src="../../bower_components/apollo-client/build/apollo-client.js"></script>
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../vr-app-homepage/vr-app-homepage.html">
 <link rel="import" href="../vr-app-scene/vr-app-scene-list.html">
-<link rel="import" href="../vr-app-scene/vr-app-scene.html">
 <link rel="import" href="../vr-app-components/vr-app-nav.html">
-<script src="../../bower_components/apollo-client/build/apollo-client.js"></script>
+<link rel="import" href="../vr-app-scene/vr-app-scene.html">
 
 
 <dom-module id="vr-app-root">
@@ -22,6 +22,7 @@
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        --nav-height: 80px;
       }
 
       iron-pages {
