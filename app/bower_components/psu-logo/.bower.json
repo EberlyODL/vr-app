@@ -12,14 +12,13 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   },
   "homepage": "https://github.com/cgldevel/psu-logo",
-  "_release": "87065d9ad4",
+  "_release": "6f6826ca4b",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "87065d9ad4cdb9776b842a4c25c953a66fb3e514"
+    "commit": "6f6826ca4b3823eb24aee39ba4fef8923b76dfd3"
   },
   "_source": "https://github.com/cgldevel/psu-logo.git",
   "_target": "*",
-  "_originalSource": "cgldevel/psu-logo",
-  "_direct": true
+  "_originalSource": "cgldevel/psu-logo"
 }
