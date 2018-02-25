@@ -14,13 +14,18 @@
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
         min-height: 100vh;
         background-color: #fff;
         background-image: url("/assets/images/print_background.jpg");
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
+      }
+
+      iron-pages {
+        flex: 1 1 auto;
       }
 
       .app_footer_wrap {
