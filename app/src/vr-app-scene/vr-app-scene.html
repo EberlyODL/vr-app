@@ -1,21 +1,32 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 
 <dom-module id="vr-app-scene">
   <template>
     <style>
       :host {
         display: block;
+        background: gray;
+        overflow: hidden;
       }
     </style>
 
+    <app-route route="{{route}}" pattern="/:sceneId" data="{{routeData}}" tail="{{routeTail}}"></app-route>
+    <graphql-query variables="{{routeData}}" result="{{scene}}">
+      query ($sceneId: ID!) {
+        data: Scene(id: $sceneId) {
+          id
+          body
+          title
+        }
+      }
+    </graphql-query>
 
-    <iron-ajax auto url="[[_generateUrl(sceneData.scene)]]" handle-as="json" on-response="handleResponse"></iron-ajax>
-
-
-
-    <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}"></app-route>
-
-
+    
+    <template is="dom-if" if="[[scene.data]]">
+      <h1>[[scene.data.title]]</h1>
+    </template>
+    
 
 
   </template>
@@ -38,11 +49,6 @@
           type: Object
         }
       },
-
-      _generateUrl: function(scene) {
-        return `http://localhost/api/node/scene/${scene}`;
-      }
-
     });
   </script>
 </dom-module>
