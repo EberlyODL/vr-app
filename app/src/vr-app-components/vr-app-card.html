@@ -11,6 +11,15 @@
         box-shadow: 1px 2px 5px #191919;
       }
 
+      :host a {
+        text-decoration: none;
+      }
+
+      .delete_dialog paper-dialog {
+        background-image: url("/assets/images/menu_background_1.png");
+        background-size: cover;
+      }
+
       #header {
         position: relative;
         height: 50vw;
@@ -50,14 +59,16 @@
     </a>
     <paper-icon-button icon="delete" on-click="_deleteSceneTriggered"></paper-icon-button>
 
-    <paper-dialog id="dialog" modal>
-      <h2>Are you sure you want to delete [[title]]?</h2>
-      <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button dialog-confirm autofocus on-click="_deleteScene">Accept</paper-button>
-      </div>
-    </paper-dialog>
-    
+    <div class="delete_dialog">
+      <paper-dialog id="dialog" modal>
+        <h2>Are you sure you want to delete [[title]]?</h2>
+        <div class="buttons">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <paper-button dialog-confirm autofocus on-click="_deleteScene">Accept</paper-button>
+        </div>
+      </paper-dialog>
+    </div>
+
   </template>
   <script>
     Polymer({
