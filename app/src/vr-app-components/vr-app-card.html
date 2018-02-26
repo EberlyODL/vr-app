@@ -2,70 +2,90 @@
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
 
 <dom-module id="vr-app-card">
-    <template>
-        <style>
-            :host {
-                display: block;
-                background-color: #97e3f1;
-                padding: 8px;
-                box-shadow: 1px 2px 5px #191919;
-            }
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color: #97e3f1;
+        padding: 8px;
+        box-shadow: 1px 2px 5px #191919;
+      }
 
-            #header {
-                position: relative;
-                height: 50vw;
-                max-height: 300px;
-                display: flex;
-                align-items: flex-end;
-            }
+      #header {
+        position: relative;
+        height: 50vw;
+        max-height: 300px;
+        display: flex;
+        align-items: flex-end;
+      }
 
-            #title {
-                font-size: 18px;
-                color: white;
-                position: relative;
-                z-index: 5;
-                padding: .3em;
-                text-transform: uppercase;
-                background: rgba(0, 0, 0, 0.5);
-                padding: 16px;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-            }
+      #title {
+        font-size: 18px;
+        color: white;
+        position: relative;
+        z-index: 5;
+        padding: .3em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 16px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
 
-            #image {
-                height: 100%;
-                width: 100%;
-                top: 0;
-                position: absolute;
-            }
-        </style>
-        <a href="[[url]]">
-            <div id="container">
-                <div id="header">
-                    <div id="title">[[title]]</div>
-                    <iron-image id="image" sizing="cover" src="[[image]]"></iron-image>
-                </div>
-            </div>
-        </a>
-    </template>
-    <script>
-        Polymer({
-            is: 'vr-app-card',
-            properties: {
-                title: {
-                    type: String,
-                    value: ''
-                },
-                image: {
-                    type: String,
-                    value: ''
-                },
-                url: {
-                    type: String,
-                    value: ''
-                }
-            }
-        });
-    </script>
+      #image {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        position: absolute;
+      }
+    </style>
+    <a href="[[url]]">
+      <div id="container">
+        <div id="header">
+          <div id="title">[[title]]</div>
+          <iron-image id="image" sizing="cover" src="[[image]]"></iron-image>
+        </div>
+      </div>
+    </a>
+    <paper-icon-button icon="delete" on-click="_deleteSceneTriggered"></paper-icon-button>
+
+    <paper-dialog id="dialog" modal>
+      <h2>Are you sure you want to delete [[title]]?</h2>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus on-click="_deleteScene">Accept</paper-button>
+      </div>
+    </paper-dialog>
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-card',
+      properties: {
+        title: {
+          type: String,
+          value: ''
+        },
+        image: {
+          type: String,
+          value: ''
+        },
+        url: {
+          type: String,
+          value: ''
+        },
+        id: {
+          type: String,
+          value: ''
+        }
+      },
+      _deleteSceneTriggered: function (e) {
+        this.$.dialog.open();
+      },
+      _deleteScene: function (e) {
+        this.fire('delete-clicked', { id: this.id });
+      }
+    });
+  </script>
 </dom-module>

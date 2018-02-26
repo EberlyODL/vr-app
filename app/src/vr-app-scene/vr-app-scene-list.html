@@ -8,27 +8,31 @@
   <template>
     <style>
       :host {
-        display:block;
+        display:flex;
+        justify-content: center;
+        flex: 1 1 auto;
       }
 
       .scn {
         width: calc(100% - 2em);
         padding: 1em;
+        max-width: 600px;
       }
 
       @media screen and (min-width: 700px){
         .scn {
-          width: calc(40% - 2em);
+          width: calc(50% - 2em);
         }
       }
 
       #scnwrap {
         display: flex;
         flex-wrap: wrap;
-        max-width: 1160px;
+        max-width: 1600px;
         justify-content: center;
-        margin: 10px auto 45px;
+        flex: 1;
       }
+
     </style>
 
     <graphql-query result="{{data}}">
@@ -40,20 +44,28 @@
         }
       }
     </graphql-query>
+    <graphql-mutation id="apiDeleteScene" variables="[[_deleteSceneData]]" result-changed="_resultChangedHandler">
+      mutation CreateScene(
+        $id: ID!
+      ) {
+        deleteScene(
+          id: $id
+        ) {
+          id
+        }
+      }
+    </graphql-mutation>
+
 
   <div id="scnwrap">
     <template is="dom-if" if="[[data]]">
         <template is="dom-repeat" items="[[data.allScenes]]">
           <div class="scn">
-              <vr-app-card title="[[item.title]]" image="[[item.image]]" url="[[_generateLink(item.id)]]"></vr-app-card>
-            </div>
+            <vr-app-card id="[[item.id]]" title="[[item.title]]" image="[[item.image]]" url="[[_generateLink(item.id)]]" on-delete-clicked="_itemDeleted"></vr-app-card>
+          </div>
         </template>
     </template>
   </div>
-
-  
-  <paper-button raised on-click="_createNewScene">Add New Scene</paper-button>
-  
 
   </template>
   <script>
@@ -64,6 +76,14 @@
       _generateLink: function (uuid) {
         return `/scene/${uuid}`;
       },
+      _itemDeleted: function (e) {
+        const itemId = e.detail.id;
+        this._deleteSceneData = {
+          id: itemId
+        }
+        this.$.apiDeleteScene.execute();
+        this._deleteSceneData = {}
+      }
     });
   </script>
 </dom-module>

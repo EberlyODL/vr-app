@@ -2,3 +2,5 @@ version: '3'
 services:
   service_snapshot:
     entrypoint: npm run dev
+  aframe_generator:
+    entrypoint: nodemon indexjs

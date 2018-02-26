@@ -9,7 +9,6 @@
 <link rel="import" href="../vr-app-components/vr-app-nav.html">
 <link rel="import" href="../vr-app-scene/vr-app-scene.html">
 
-
 <dom-module id="vr-app-root">
   <template>
     <style>
@@ -49,17 +48,16 @@
       }
       
     </style>
-
+    <app-location route="{{route}}"></app-location>
+    <app-route route="{{route}}" pattern="/:section" data="{{sectionData}}" tail="{{sectionTail}}"></app-route>
     <graphql-client config='{ "uri": "http://localhost:60000/simple/v1/cje1fcgde001b01119zurj946" }'></graphql-client>
 
     <vr-app-nav></vr-app-nav>
 
-    <app-location route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:section" data="{{sectionData}}" tail="{{sectionTail}}">
-    </app-route>
-
-
     <iron-pages selected="[[sectionData.section]]" attr-for-selected="data-page">
+      <div data-page="scene">
+        <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
+      </div>
       <div data-page="scene">
         <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
       </div>
