@@ -19,6 +19,18 @@ type Scene @model {
   title: String!
   body: String!
   image: String
+  objects: [Object!]! @relation(name: "SceneObjects")
+
+  # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+  # author: User! @relation(name: "UserScenes")
+}
+
+type Object @model {
+  id: ID! @isUnique
+  title: String!
+  body: String!
+  image: String
+  scenes: [Scene!]! @relation(name: "SceneObjects")
 
   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
   # author: User! @relation(name: "UserScenes")

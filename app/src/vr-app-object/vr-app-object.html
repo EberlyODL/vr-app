@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+
+<dom-module id="vr-app-object">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <graphql-query variables="{{_queryData}}" result="{{object}}">
+      query ($id: ID!) {
+        data: Object(id: $id) {
+          body
+        }
+      }
+    </graphql-query>
+
+    <iframe id="iframe" src$="[[object.data.body]]"></iframe>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-object',
+      properties: {
+        id: {
+          type: String,
+          value: null 
+        },
+        _queryData: {
+          type: String,
+          compute: '_computeQueryData(id)'
+        }
+      },
+      _computeQueryData: function (id) {
+        return {
+          id: id
+        }
+      }
+    });
+  </script>
+</dom-module>
