@@ -1,0 +1,35 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="a-frame">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div id="sceneContainer">
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'a-frame',
+      properties: {
+        scene: {
+          type: String,
+          value: '',
+          observer: '_sceneChanged'
+        }
+      },
+      _sceneChanged: async function (scene, prevScene) {
+        // dirty check
+        if (scene === prevScene) return;
+        // send to microservice
+        const iframe = await fetch('http://localhost:3000')
+          .then(res => res.text())
+      }
+    });
+  </script>
+</dom-module>

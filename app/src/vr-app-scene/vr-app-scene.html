@@ -1,22 +1,40 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+<link rel="import" href="../a-frame/a-frame.html">
 
 <dom-module id="vr-app-scene">
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        background: gray;
+        overflow: hidden;
+        position: relative;
+        min-height: calc(100vh - var(--nav-height));
+      }
+
+      #iframeContainer {
+        display: flex;
+        flex: 1 1 auto;
+      }
+
+      iframe {
+        display: flex;
+        flex: 1 1 auto;
       }
     </style>
 
+    <app-route route="{{route}}" pattern="/:sceneId" data="{{routeData}}" tail="{{routeTail}}"></app-route>
+    <graphql-query variables="{{routeData}}" result="{{scene}}">
+      query ($sceneId: ID!) {
+        data: Scene(id: $sceneId) {
+          body
+        }
+      }
+    </graphql-query>
 
-    <iron-ajax auto url="[[_generateUrl(sceneData.scene)]]" handle-as="json" on-response="handleResponse"></iron-ajax>
-
-
-
-    <app-route route="{{route}}" pattern="/:scene" data="{{sceneData}}" tail="{{sceneTail}}"></app-route>
-
-
-
+    <iframe id="iframe" src$="[[scene.data.body]]"></iframe>
 
   </template>
   <script>
@@ -38,11 +56,26 @@
           type: Object
         }
       },
-
-      _generateUrl: function(scene) {
-        return `http://localhost/api/node/scene/${scene}`;
+      ready: function () {
+        const iframe = this.$.iframe;
+        iframe.onload = () => {
+          /**
+           * Listen to hotspot clicks
+           */
+          iframe.contentDocument.addEventListener('click', (e) => {
+            if (e.detail) {
+              if (e.detail.target) {
+                if (e.detail.target.classList) {
+                  if (e.detail.target.classList.contains('hotspot')) {
+                    const id = e.detail.target.id;
+                    this.fire('hotspot-clicked', { id: id });
+                  }
+                }
+              }
+            }
+          });
+        }
       }
-
     });
   </script>
 </dom-module>

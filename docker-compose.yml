@@ -3,58 +3,25 @@ services:
   app:
     build: ./app
     ports:
-      - "81:80"
+      - "80:80"
     volumes:
       - ./app:/usr/share/nginx/html:ro
-    networks:
-      - contenta
-  nginx:
-    build: ./nginx
+  aframe_generator:
+    build: ./aframe_generator
+    entrypoint: npm index.js
     ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - contenta
+      - "3000:3000"
     volumes:
-      - www:/var/www
-    # - ./volumes/contenta:/var/www/web
-    # this ensures that nginx's upstream host "php" will always have
-    # valid DNS when we're starting up
-    depends_on:
-      - php
-  php:
-    build: ./php
-    ports:
-      - "9000:9000"
-    volumes:
-      - www:/var/www
-    env_file:
-      - .env
-    networks:
-      - contenta
-  database:
-    build: ./database
-    # ports:
-    #   - "3306:3306"
-    volumes:
-      - data:/var/lib/mysql
-    env_file:
-      - .env
-    networks: 
-      - contenta
+      - ./aframe_generator:/home/node/html
+      - /home/node/html/node_modules
   service_snapshot:
     build: ./service_snapshot
     entrypoint: npm start
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes: 
       - ./service_snapshot:/home/node/html
       - service_snapshot_nodemodules:/home/node/html/node_modules
 
 volumes:
-  data:
-  www:
   service_snapshot_nodemodules:
-
-networks:
-  contenta: 

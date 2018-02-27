@@ -2,21 +2,22 @@
 <link rel="import" href="../vr-app-scene/vr-app-scene-list.html">
 
 
-
-
-
-
-
 <dom-module id="vr-app-homepage">
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      vr-app-scene-list {
+        display: flex;
+        flex: 1 1 auto;
       }
     </style>
 
     <vr-app-scene-list></vr-app-scene-list>
-
 
   </template>
   <script>

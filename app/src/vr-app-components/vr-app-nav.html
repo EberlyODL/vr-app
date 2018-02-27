@@ -5,7 +5,8 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
-
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../vr-app-scene/vr-app-scene-create-form.html">
 
 <dom-module id="vr-app-nav">
     <template>
@@ -14,26 +15,20 @@
                 display: block;
             }
 
-            psu-logo {
+            #psu-logo {
                 max-width: 15%;
                 top: 5px;
             }
 
             .nav_wrap {
                 background: rgba(0, 0, 0, 0.5);
+                overflow: hidden;
             }
 
             .nav {
                 display: flex;
                 align-items: center;
-                height: 80px;
-                margin-bottom: 40px;
-            }
-
-
-            .menu_button {
-                position: absolute;
-                right: 25px;
+                height: var(--nav-height);
             }
 
             .menu_title {
@@ -60,9 +55,15 @@
                 margin-top: 15px;
             }
 
-            .tools_button {
+            .menu_buttons {
+                display: inline-flex;
                 position: absolute;
-                right: 70px;
+                right: 25px;
+            }
+
+            .dialog_utility_buttons paper-button {
+                display: inline-flex;
+                align-items: center;
             }
 
             .tools_dialog paper-dialog {
@@ -91,66 +92,76 @@
                     font-size: 16px;
                 }
             }
-            
+
+            .create_dialog paper-dialog {
+                display: block;
+                background-image: url("/assets/images/menu_background_1.png");
+                position: absolute;
+                overflow: hidden;
+                width: 80%;
+                top: 100px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
         </style>
 
-<div class="menu_dialog">
-    <paper-dialog id="mainMenu" with-backdrop>
-      <div class="close_button">
-        <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
-      </div>
-      <div class="menu_title">Welcome to FRNSC | Virtual Crime Scene</div>
-      <paper-dialog-scrollable>
-        <div class="menu_body">
-          Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
-          at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas
-          non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus. Curabitur
-          aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus
-          nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis
-          at tellus.
-        </div>
-        <div class="dialog_utility_buttons">
-          <paper-button>
-            <iron-icon icon="face"></iron-icon>Account</paper-button>
-        </div>
-      </paper-dialog-scrollable>
-    </paper-dialog>
-  </div>
 
 
-  <div class="tools_dialog">
-    <paper-dialog id="toolsMenu" with-backdrop>
-      <div class="close_button">
-        <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
-      </div>
-      <div class="menu_title">Welcome to the Tools Menu</div>
-      <paper-dialog-scrollable>
-        <div class="menu_body_wrap">
-          <div class="menu_body">
-            Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
-            at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec,
-            egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id orci porta dapibus.
-            Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor
-            lectus nibh. Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed,
-            convallis at tellus.
-          </div>
-          <div class="dialog_utility_buttons">
-            <paper-button>
-              <iron-icon icon="face"></iron-icon>Account</paper-button>
-          </div>
+        <div class="create_dialog">
+            <paper-dialog id="createScene" with-backdrop>
+                <div class="close_button">
+                    <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+                </div>
+                <div class="menu_title">Create Scene</div>
+
+                <vr-app-scene-create-form></vr-app-scene-create-form>
+
+            </paper-dialog>
         </div>
-      </paper-dialog-scrollable>
-    </paper-dialog>
-  </div>
+
+
+
+
+        <div class="tools_dialog">
+            <paper-dialog id="toolsMenu" with-backdrop>
+                <div class="close_button">
+                    <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+                </div>
+                <div class="menu_title">Welcome to the Tools Menu</div>
+                <paper-dialog-scrollable>
+                    <div class="menu_body_wrap">
+                        <div class="menu_body">
+                            Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+                            at sem. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque
+                            nec, egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Pellentesque in ipsum id
+                            orci porta dapibus. Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget
+                            felis porttitor volutpat. Sed porttitor lectus nibh. Pellentesque in ipsum id orci porta dapibus.
+                            Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
+                        </div>
+                        <div class="dialog_utility_buttons">
+                            <paper-button raised class="indigo">
+                                <iron-icon icon="face"></iron-icon>
+                                Account
+                            </paper-button>
+                        </div>
+                    </div>
+                </paper-dialog-scrollable>
+            </paper-dialog>
+        </div>
 
         <div class="nav_wrap">
             <div class="nav">
-                <psu-logo college="Eberly College of Science" url="http://science.psu.edu/"></psu-logo>
-                <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
-                <div class="menu_button">
-                    <paper-icon-button id="menu_btn" icon="menu" style="color:#fff;"></paper-icon-button>
+                <div id="psu-logo">
+                    <psu-logo college="Eberly College of Science"></psu-logo>
                 </div>
-                <div class="tools_button">
+                <div class="home_page_title">FRNSC | Virtual Crime Scene</div>
+
+                <div class="menu_buttons">
+                    <a id="home" href="/">
+                        <paper-icon-button id="home_btn" icon="home" style="color:#fff;"></paper-icon-button>
+                    </a>
+                    <paper-icon-button id="create_btn" icon="add-circle" style="color:#fff;"></paper-icon-button>
                     <paper-icon-button id="tools_btn" icon="build" style="color:#fff;"></paper-icon-button>
                 </div>
             </div>
@@ -164,13 +175,15 @@
             },
 
             ready: function () {
-                this.$$("#menu_btn").addEventListener("click", (e) => {
-                    this.$$('#mainMenu').toggle();
-                });
-
                 this.$$("#tools_btn").addEventListener("click", (e) => {
                     this.$$('#toolsMenu').toggle();
                 });
+
+                this.$$("#create_btn").addEventListener("click", (e) => {
+                    this.$$('#createScene').toggle();
+                });
+
+
 
             },
 
