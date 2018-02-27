@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 <link rel="import" href="../a-frame/a-frame.html">
+<link rel="import" href="../vr-app-object/vr-app-object.html">
+<link rel="import" href="../vr-app-components/vr-app-dialog.html">
 
 <dom-module id="vr-app-scene">
   <template>
@@ -11,7 +13,7 @@
         background: gray;
         overflow: hidden;
         position: relative;
-        min-height: calc(100vh - var(--nav-height));
+        flex: 1 1 auto;
       }
 
       #iframeContainer {
@@ -22,6 +24,13 @@
       iframe {
         display: flex;
         flex: 1 1 auto;
+        min-height: calc(100vh - var(--nav-height));
+      }
+
+      vr-app-dialog {
+        --paper-dialog: {
+          width: 80%;
+        }
       }
     </style>
 
@@ -30,11 +39,22 @@
       query ($sceneId: ID!) {
         data: Scene(id: $sceneId) {
           body
+          objects {
+            id
+            title
+          }
         }
       }
     </graphql-query>
 
     <iframe id="iframe" src$="[[scene.data.body]]"></iframe>
+
+    <vr-app-dialog id="objectsDialog">
+      <template is="dom-repeat" items="[[scene.data.objects]]" as="object">
+        <vr-app-object id="[[object.id]]"></vr-app-object>
+      </template>
+    </vr-app-dialog>
+    
 
   </template>
   <script>
@@ -68,6 +88,7 @@
                 if (e.detail.target.classList) {
                   if (e.detail.target.classList.contains('hotspot')) {
                     const id = e.detail.target.id;
+                    this.$$('#objectsDialog').open();
                     this.fire('hotspot-clicked', { id: id });
                   }
                 }
