@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../vr-app-scene/vr-app-scene-create-form.html">
@@ -106,22 +107,15 @@
             }
         </style>
 
-
-
         <div class="create_dialog">
             <paper-dialog id="createScene" with-backdrop>
                 <div class="close_button">
                     <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
                 </div>
                 <div class="menu_title">Create Scene</div>
-
                 <vr-app-scene-create-form></vr-app-scene-create-form>
-
             </paper-dialog>
         </div>
-
-
-
 
         <div class="tools_dialog">
             <paper-dialog id="toolsMenu" with-backdrop>
@@ -161,8 +155,11 @@
                     <a id="home" href="/">
                         <paper-icon-button id="home_btn" icon="home" style="color:#fff;"></paper-icon-button>
                     </a>
+                    <paper-tooltip for="home_btn">Home</paper-tooltip>
                     <paper-icon-button id="create_btn" icon="add-circle" style="color:#fff;"></paper-icon-button>
+                    <paper-tooltip for="create_btn">Create Scene</paper-tooltip>
                     <paper-icon-button id="tools_btn" icon="build" style="color:#fff;"></paper-icon-button>
+                    <paper-tooltip for="tools_btn">Tools</paper-tooltip>
                 </div>
             </div>
         </div>

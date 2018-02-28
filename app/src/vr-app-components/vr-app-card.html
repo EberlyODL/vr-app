@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+
 
 <dom-module id="vr-app-card">
   <template>
@@ -57,13 +59,18 @@
         </div>
       </div>
     </a>
-    <paper-icon-button icon="delete" on-click="_deleteSceneTriggered"></paper-icon-button>
+    <paper-icon-button id="delete_scene" icon="delete" on-click="_deleteSceneTriggered"></paper-icon-button>
+    <paper-tooltip for="delete_scene">Delete Scene</paper-tooltip>
+
+
 
     <div class="delete_dialog">
       <paper-dialog id="dialog" modal>
         <h2>Are you sure you want to delete [[title]]?</h2>
         <div class="buttons">
           <paper-button dialog-dismiss>Cancel</paper-button>
+          <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+
           <paper-button dialog-confirm autofocus on-click="_deleteScene">Accept</paper-button>
         </div>
       </paper-dialog>
