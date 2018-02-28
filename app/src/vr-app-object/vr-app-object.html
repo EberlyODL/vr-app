@@ -2,7 +2,7 @@
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
 <link rel="import" href="../../bower_components/html-echo/html-echo.html">
 <link rel="import" href="../notebook-paper/notebook-paper.html">
-
+<link rel="import" href="../../bower_components/apollo-client/graphql-mutate.html">
 
 <dom-module id="vr-app-object">
   <template>
@@ -42,9 +42,28 @@
       }
     </style>
 
-    <graphql-query variables="{{_queryData}}" result="{{object}}">
-      query ($id: ID!) { data: Object(id: $id) { title info body } }
+    <graphql-query id="apiGetObject" variables="{{_queryData}}" result="{{object}}">
+      query ($id: ID!) { data: Object(id: $id) { title info body id } }
     </graphql-query>
+    <graphql-mutation id="apiUpdateObject" variables="[[object.data]]" result="{{object}}">
+        mutation UpdateObject(
+          $id: ID!,
+          $title: String!,
+          $body: String!,
+          $image: String,
+          $info: String,
+        ) {
+          updateObject(
+            id: $id,
+            title: $title,
+            body: $body,
+            image: $image,
+            info: $info
+          ) {
+            id
+          }
+        }
+      </graphql-mutation>
 
     <div id="iframeContainer">
       <iframe id="iframe" frameBorder="0" src$="[[object.data.body]]"></iframe>
@@ -76,6 +95,12 @@
         return {
           id: id
         }
+      },
+      _refreshQuery: function () {
+        this.$.apiGetObject.execute();
+      },
+      updateObject: function () {
+        this.$.apiUpdateObject.execute();
       }
     });
   </script>
