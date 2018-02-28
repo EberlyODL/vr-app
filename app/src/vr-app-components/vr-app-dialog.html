@@ -30,7 +30,9 @@
         <div class="close_button">
           <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
         </div>
-        <slot></slot>
+        <paper-dialog-scrollable>
+          <slot></slot>
+        </paper-dialog-scrollable>
       </paper-dialog>
     </div>
 
