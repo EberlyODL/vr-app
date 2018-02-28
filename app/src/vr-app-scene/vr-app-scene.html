@@ -50,8 +50,8 @@
     <iframe id="iframe" src$="[[scene.data.body]]"></iframe>
 
     <vr-app-dialog id="objectsDialog">
-      <template is="dom-repeat" items="[[scene.data.objects]]" as="object">
-        <vr-app-object id="[[object.id]]"></vr-app-object>
+      <template is="dom-if" if="[[activeObjectId]]">
+        <vr-app-object id="[[activeObjectId]]"></vr-app-object>
       </template>
     </vr-app-dialog>
     
@@ -74,6 +74,10 @@
         },
         route: {
           type: Object
+        },
+        activeObjectId: {
+          type: String,
+          value: null
         }
       },
       ready: function () {
@@ -87,16 +91,22 @@
               if (e.detail.target) {
                 if (e.detail.target.classList) {
                   if (e.detail.target.classList.contains('hotspot')) {
-                    const id = e.detail.target.id;
-                    this.$$('#objectsDialog').open();
-                    this.fire('hotspot-clicked', { id: id });
+                    // we can get the unique name from the id
+                    const name = e.detail.target.id;
+                    // we will use that to find the activeObject in the Objects field
+                    console.log(this.scene);
+                    const activeObject = this.scene.data.objects.find(item => item.title === name);
+                    if (activeObject) {
+                      this.activeObjectId = activeObject.id;
+                      this.$$('#objectsDialog').open();
+                    }
                   }
                 }
               }
             }
           });
         }
-      }
+      },
     });
   </script>
 </dom-module>

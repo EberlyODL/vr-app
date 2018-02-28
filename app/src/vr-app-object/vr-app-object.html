@@ -6,7 +6,14 @@
     <style>
       :host {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+      }
+
+      @media screen and (min-width: 600px) {
+        :host {
+          flex-direction: row;
+        }
       }
 
       :host>* {
@@ -19,6 +26,8 @@
         height: 0;
         overflow: visible;
         height: 49vw;
+        display: flex;
+        align-content: center;
       }
 
       iframe {
@@ -80,7 +89,7 @@
     </style>
 
     <graphql-query variables="{{_queryData}}" result="{{object}}">
-      query ($id: ID!) { data: Object(id: $id) { body } }
+      query ($id: ID!) { data: Object(id: $id) { title info body } }
     </graphql-query>
 
     <div id="iframeContainer">
@@ -88,9 +97,7 @@
     </div>
     <div id="info">
       <h1 id="infoTitle">Evidence log</h1>
-      Object was found in the linving room</br>
-      Orginally found with 8% batter life.</br>
-      Prints dusted with only victims right palm print and unkown left thumbprint.</br>
+      [[object.data.info]]
     </div>
 
   </template>
@@ -100,7 +107,6 @@
       properties: {
         id: {
           type: String,
-          value: null
         },
         _queryData: {
           type: Object,
