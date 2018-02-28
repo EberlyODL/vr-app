@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+<link rel="import" href="../../bower_components/html-echo/html-echo.html">
 
 <dom-module id="vr-app-object">
   <template>
@@ -97,7 +98,7 @@
     </div>
     <div id="info">
       <h1 id="infoTitle">Evidence log</h1>
-      [[object.data.info]]
+      <html-echo html="[[object.data.info]]"></html-echo>
     </div>
 
   </template>
