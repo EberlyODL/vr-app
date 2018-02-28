@@ -1,0 +1,123 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-query.html">
+
+<dom-module id="vr-app-object">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+      }
+
+      @media screen and (min-width: 600px) {
+        :host {
+          flex-direction: row;
+        }
+      }
+
+      :host>* {
+        flex: 1 1 auto;
+      }
+
+      #iframeContainer {
+        width: 100%;
+        position: relative;
+        height: 0;
+        overflow: visible;
+        height: 49vw;
+        display: flex;
+        align-content: center;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      #info {
+        font: 16px 'AmericanTypewriter', Cambria, Georgia;
+        color: #282625;
+        line-height: 34px;
+        padding: 37px 55px 27px;
+        position: relative;
+        border: 1px solid #B5B5B5;
+        background: white;
+        background: -webkit-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+        background: -moz-linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+        background: linear-gradient(top, #DFE8EC 0%, white 8%) 0 57px;
+        -webkit-background-size: 100% 30px;
+        -moz-background-size: 100% 30px;
+        -ms-background-size: 100% 30px;
+        background-size: 100% 30px;
+      }
+
+      #info::before {
+        content: "";
+        z-index: -1;
+        margin: 0 1px;
+        width: 706px;
+        height: 10px;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        background: white;
+        border: 1px solid #B5B5B5;
+      }
+
+      #info::after {
+        content: '';
+        position: absolute;
+        width: 0px;
+        top: 0;
+        left: 39px;
+        bottom: 0;
+        border-left: 1px solid #F8D3D3;
+      }
+
+      #infoTitle {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 18px;
+      }
+
+      #infoTitle p {
+      }
+    </style>
+
+    <graphql-query variables="{{_queryData}}" result="{{object}}">
+      query ($id: ID!) { data: Object(id: $id) { title info body } }
+    </graphql-query>
+
+    <div id="iframeContainer">
+      <iframe id="iframe" frameBorder="0" src$="[[object.data.body]]"></iframe>
+    </div>
+    <div id="info">
+      <h1 id="infoTitle">Evidence log</h1>
+      [[object.data.info]]
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-object',
+      properties: {
+        id: {
+          type: String,
+        },
+        _queryData: {
+          type: Object,
+          computed: '_computeQueryData(id)'
+        }
+      },
+      _computeQueryData: function (id) {
+        return {
+          id: id
+        }
+      }
+    });
+  </script>
+</dom-module>

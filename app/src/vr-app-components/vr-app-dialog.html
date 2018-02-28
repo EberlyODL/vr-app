@@ -1,0 +1,55 @@
+<dom-module id="vr-app-dialog">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+
+      paper-dialog {
+        display: block;
+        background-image: url("/assets/images/menu_background_1.png");
+        overflow: hidden;
+        margin: auto
+        apply(--paper-dialog)
+      }
+
+      .close_button {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-top: 0;
+        background-color: #20427b;
+        color: #fff;
+        padding: 8px;
+
+      }
+    </style>
+
+    <div class="create_dialog">
+      <paper-dialog id="dialog" with-backdrop opened="{{opened}}">
+        <div class="close_button">
+          <paper-icon-button icon="cancel" dialog-dismiss></paper-icon-button>
+        </div>
+        <paper-dialog-scrollable>
+          <slot></slot>
+        </paper-dialog-scrollable>
+      </paper-dialog>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-dialog',
+      properties: {
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+      },
+      open: function () {
+        this.$.dialog.open();
+      }
+    });
+  </script>
+</dom-module>

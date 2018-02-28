@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/apollo-client/graphql-mutation.html">
+
+<dom-module id="vr-app-object-create-form">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+        max-width: 50em;
+        background: white;
+        padding: 1em;
+      }
+    </style>
+    
+    <paper-input label="title" value="{{_newObjectData.title}}"></paper-input>
+    <paper-textarea label="body" value="{{_newObjectData.body}}"></paper-textarea>
+    <paper-input label="image" value="{{_newObjectData.image}}"></paper-input>
+
+    <paper-button raised on-click="_createObject">Create Object</paper-button>
+
+    <graphql-mutation id="apiCreateObject" variables="[[_newObjectData]]" result-changed="_resultChangedHandler">
+      mutation CreateObject(
+        $title: String!,
+        $body: String!,
+        $image: String,
+      ) {
+        createObject(
+          title: $title,
+          body: $body,
+          image: $image,
+        ) {
+          id
+        }
+      }
+    </graphql-mutation>
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-object-create-form',
+      properties: {
+        _newObjectData: {
+          type: Object,
+          value: {}
+        }
+      },
+      _createObject: function () {
+        this.$.apiCreateObject.execute();
+        this._newObjectData = {};
+      }
+    });
+  </script>
+</dom-module>
