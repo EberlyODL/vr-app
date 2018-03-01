@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/html-echo/html-echo.html">
 <link rel="import" href="../notebook-paper/notebook-paper.html">
 <link rel="import" href="../../bower_components/apollo-client/graphql-mutate.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="vr-app-object">
   <template>
@@ -19,8 +21,9 @@
         }
       }
 
-      :host>* {
+      :host > * {
         flex: 1 1 auto;
+        width: 100%;
       }
 
       #iframeContainer {
@@ -41,17 +44,17 @@
         left: 0;
       }
     </style>
-
+    
     <graphql-query id="apiGetObject" variables="{{_queryData}}" result="{{object}}">
       query ($id: ID!) { data: Object(id: $id) { title info body id } }
     </graphql-query>
-    <graphql-mutation id="apiUpdateObject" variables="[[object.data]]" result="{{object}}">
-        mutation UpdateObject(
-          $id: ID!,
-          $title: String!,
-          $body: String!,
-          $image: String,
-          $info: String,
+    <graphql-mutation id="apiUpdateObject" variables="[[object.data]]" result-changed="_mutateSuccess">
+      mutation UpdateObject(
+        $id: ID!,
+        $title: String!,
+        $body: String!,
+        $image: String,
+        $info: String,
         ) {
           updateObject(
             id: $id,
@@ -59,25 +62,33 @@
             body: $body,
             image: $image,
             info: $info
-          ) {
-            id
+            ) {
+              id
+              info
+              body
+              title
+            }
           }
-        }
-      </graphql-mutation>
+        </graphql-mutation>
 
-    <div id="iframeContainer">
-      <iframe id="iframe" frameBorder="0" src$="[[object.data.body]]"></iframe>
-    </div>
-
-    <notebook-paper>
-    
-        <h1>Evidence log</h1>
-        <html-echo html="[[object.data.info]]"></html-echo>
-   
-    </notebook-paper>
-
-
-
+        <div id="model">
+          <div id="iframeContainer">
+            <iframe id="iframe" frameBorder="0" src$="[[object.data.body]]"></iframe>
+          </div>
+        </div>
+        
+        <div id="info">
+          <notebook-paper>
+            <h1>Evidence log</h1>
+            <html-echo html="[[object.data.info]]"></html-echo>
+          </notebook-paper>
+          <template is="dom-if" if="[[edit]]">
+            <paper-textarea rows="3" value="{{object.data.info}}"></paper-textarea>
+          </template>
+          <paper-button raised on-click="_toggleEdit">Edit</paper-button>
+          <paper-button hidden$="[[!edit]]" raised on-click="_updateClicked">Update</paper-button>
+          <paper-toast id="toast"></paper-toast>
+        </div>
   </template>
   <script>
     Polymer({
@@ -89,6 +100,10 @@
         _queryData: {
           type: Object,
           computed: '_computeQueryData(id)'
+        },
+        edit: {
+          type: Boolean,
+          value: false
         }
       },
       _computeQueryData: function (id) {
@@ -101,6 +116,17 @@
       },
       updateObject: function () {
         this.$.apiUpdateObject.execute();
+      },
+      _updateClicked: function () {
+        this._toggleEdit();
+        this.updateObject();
+      },
+      _toggleEdit: function () {
+        this.edit = !this.edit;
+      },
+      _mutateSuccess: function () {
+        this._refreshQuery();
+        this.$$('#toast').show('Updated Object');
       }
     });
   </script>

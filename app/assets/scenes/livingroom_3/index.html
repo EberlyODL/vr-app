@@ -23,8 +23,18 @@
       <img id="livingroom_3" src="assets/forensics_livingroom_3.jpg">
     </a-assets>
     <a-sky src="#livingroom_3"></a-sky>
-    <a-circle id="lr3skull" class="hotspot" radius="5" position="-163.637 -22.109 -96.478" rotation="0 43.65938398896873 0" scale="1.441 1.441 1.441" material=""></a-circle>
-    <a-plane id="lr3remote" class="hotspot" width="10" position="-91.403 -43.826 -65.865" rotation="-82.449 0 0" scale="1.885 5.708 2.091" material=""></a-plane>
+    <a-circle id="skull" class="hotspot" radius="5" position="-163.637 -22.109 -96.478" rotation="0 43.65938398896873 0" scale="1.441 1.441 1.441" material=""></a-circle>
+    <a-plane id="remote" class="hotspot" width="10" position="-91.403 -43.826 -65.865" rotation="-82.449 0 0" scale="1.885 5.708 2.091" material=""></a-plane>
+
+    <!-- Camera + Cursor. -->
+    <a-camera>
+      <a-cursor id="cursor" material="color:orange;shader:flat;">
+        <a-animation begin="click" easing="ease-in" attribute="scale"
+                      fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                      from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+      </a-cursor>
+    </a-camera>
   </a-scene>
   <script src="app.js"></script>
 </body>

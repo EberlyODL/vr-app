@@ -1,0 +1,22 @@
+<dom-module id="vr-app-object-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <app-route route="{{route}}" pattern="/:action" data="{{objectData}}" tail="{{objectTail}}"></app-route>
+    <iron-pages selected="[[sectionData.action]]" attr-for-selected="data-page">
+      <div data-page="update">
+        <vr-app-object-create-form id="[[objectData.id]]"></vr-app-object-create-form>
+      </div>
+    </iron-pages>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'vr-app-object-container'
+    });
+  </script>
+</dom-module>
