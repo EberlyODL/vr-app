@@ -60,8 +60,16 @@
             .menu_buttons {
                 display: inline-flex;
                 position: absolute;
-                right: 25px;
+                right: 18px;
             }
+
+            @media (max-width: 460px) {
+                paper-icon-button {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+
 
             .dialog_utility_buttons paper-button {
                 display: inline-flex;
@@ -99,7 +107,7 @@
                 display: block;
                 background-image: url("/assets/images/menu_background_1.png");
                 position: absolute;
-                overflow: hidden;
+                overflow: scroll;
                 width: 80%;
                 top: 100px;
                 left: 0;
