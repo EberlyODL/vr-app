@@ -19,7 +19,11 @@
     "paper-input": "PolymerElements/paper-input#^2.1.1",
     "html-echo": "Collaborne/html-echo#^1.0.1",
     "paper-button": "PolymerElements/paper-button#^2",
-    "paper-tooltip": "PolymerElements/paper-tooltip#^2.1.1"
+    "paper-tooltip": "PolymerElements/paper-tooltip#^2.1.1",
+    "juicy-html": "Juicy/juicy-html#^4.0.0",
+    "polymer-tinymce": "JaySunSyn/polymer-tinymce#^1.0.6",
+    "lrn-markdown-editor": "LRNWebComponents/lrn-markdown-editor#^0.0.7",
+    "paper-toast": "PolymerElements/paper-toast#^2.1.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

@@ -8,7 +8,7 @@
 <link rel="import" href="../vr-app-scene/vr-app-scene-list.html">
 <link rel="import" href="../vr-app-components/vr-app-nav.html">
 <link rel="import" href="../vr-app-scene/vr-app-scene.html">
-<link rel="import" href="../vr-app-object/vr-app-object.html">
+<link rel="import" href="../vr-app-object/vr-app-object-container.html">
 
 <dom-module id="vr-app-root">
   <template>
@@ -51,13 +51,13 @@
     </style>
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:section" data="{{sectionData}}" tail="{{sectionTail}}"></app-route>
-    <graphql-client config='{ "uri": "http://localhost:60000/simple/v1/cje7a5zrd00060122i8v3zwdc" }'></graphql-client>
+    <graphql-client config='{ "uri": "http://localhost:60000/simple/v1/cje7a9i8v00040100stamxhut" }'></graphql-client>
 
     <vr-app-nav></vr-app-nav>
 
     <iron-pages selected="[[sectionData.section]]" attr-for-selected="data-page">
-      <div data-page="scene">
-        <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
+      <div data-page="object">
+        <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
       </div>
       <div data-page="scene">
         <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
@@ -75,11 +75,6 @@
         ©2018 Penn State University. All Rights Reserved.
       </div>
     </div>
-
-
-
-
-
 
   </template>
 

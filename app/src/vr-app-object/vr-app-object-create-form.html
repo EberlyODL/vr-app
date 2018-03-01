@@ -18,7 +18,7 @@
     <paper-textarea label="body" value="{{_newObjectData.body}}"></paper-textarea>
     <paper-input label="image" value="{{_newObjectData.image}}"></paper-input>
 
-    <paper-button raised on-click="_createObject">Create Object</paper-button>
+    <paper-button raised on-click="_createObject">Update Object</paper-button>
 
     <graphql-mutation id="apiCreateObject" variables="[[_newObjectData]]" result-changed="_resultChangedHandler">
       mutation CreateObject(
@@ -41,6 +41,10 @@
     Polymer({
       is: 'vr-app-object-create-form',
       properties: {
+        id: {
+          type: String,
+          value: null
+        },
         _newObjectData: {
           type: Object,
           value: {}
@@ -48,7 +52,6 @@
       },
       _createObject: function () {
         this.$.apiCreateObject.execute();
-        this._newObjectData = {};
       }
     });
   </script>
