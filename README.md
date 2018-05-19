@@ -1,38 +1,55 @@
 # Getting started
 
+This is a Polymer frontend, Graphcool backend, nodejs microservices application.
+
+## Local Development
+
+### Start the frontend and microservices
+
 ```
 make start
 ```
 
-
-
-# Initialize new Drupal site.
-
-The container doesn't automatically run `drush site-install` because we want it to be possible to stop and start an existing container without rebuilding the site every time. Instead, you need to manually run this after starting the container the first time:
-
-`docker exec contentadocker_php_1 init-drupal`
-
-_In the above command, "contentadocker_php_1" is the name of the running container for the php service. If docker-compose names yours differently, you can find it with `docker-compose ps`._
-
-When it finishes successsfully, the command will output a one-time login URL.
-
-# Restore existing Drupal site.
-
-If you have backup files `./volumes/data.tgz` and `./volumes/www.tgz` then you can restore an existing drupal site.
+Start the graphcool backend
 
 ```
-sh ./volumes/restore.sh
+cd ./server
 ```
 
-# Backup current Drupal site
+### Start the backend service
 
-If you want to take a snapshot of the current Drupal site.
+If this is the first time your setting up the application you will need to
+create the local docker containers
 
 ```
-sh ./volumes/backup.sh
+graphcool local up
 ```
 
+Now you can deploy to the local docker containers
 
-# Persistence
+```
+graphcool deploy
+```
 
-Persistent state is stored in two docker volumes (named `data` and `www`). You can destroy and recreate the containers as much as you like and your site will be preserved until you also destroy these volumes.
+If this is the first time running the `graphcool deploy` command then it will prompt
+you for the target name and service name.
+
+```
+target: dev
+service_name: local
+```
+
+If everything worked correctly you should see a listing of GraphQL endpoints.
+
+```
+Simple API:        http://localhost:60000/simple/v1/<unique_id>
+Relay API:         http://localhost:60000/relay/v1/<unique_id>
+Subscriptions API: ws://localhost:60000/subscriptions/v1/<unique_id>
+```
+
+Accessing the `Simple API endpoint will show you the interactive Graphcool Playground
+where you can query and mutate the local data.
+
+## Accessing the application
+
+Visit [http://localhost](http://localhost)
