@@ -51,24 +51,26 @@
     </style>
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:section" data="{{sectionData}}" tail="{{sectionTail}}"></app-route>
-    <graphql-client config='{ "uri": "http://localhost:60000/simple/v1/cje7a9i8v00040100stamxhut" }'></graphql-client>
-
-    <vr-app-nav></vr-app-nav>
-
-    <iron-pages selected="[[sectionData.section]]" attr-for-selected="data-page">
-      <div data-page="object">
-        <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
-      </div>
-      <div data-page="scene">
-        <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
-      </div>
-      <div data-page="object">
-        <vr-app-object id="cje63l5is00660101zxjwyslu"></vr-app-object>
-      </div>
-      <div data-page="">
-        <vr-app-homepage></vr-app-homepage>
-      </div>
-    </iron-pages>
+    
+    <template is="dom-if" if="[[graphqlConfig]]">
+      <graphql-client config="[[graphqlConfig]]"></graphql-client>
+      <vr-app-nav></vr-app-nav>
+  
+      <iron-pages selected="[[sectionData.section]]" attr-for-selected="data-page">
+        <div data-page="object">
+          <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
+        </div>
+        <div data-page="scene">
+          <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
+        </div>
+        <div data-page="object">
+          <vr-app-object id="cje63l5is00660101zxjwyslu"></vr-app-object>
+        </div>
+        <div data-page="">
+          <vr-app-homepage></vr-app-homepage>
+        </div>
+      </iron-pages>
+    </template>
 
     <div class="app_footer_wrap">
       <div class="app_footer">
@@ -84,7 +86,20 @@
       is: 'vr-app-root',
 
       properties: {
+        graphqlConfig: {
+          type: Object,
+        }
       },
+
+      ready: function () {
+        fetch('/.env.json')
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            const uri = data.uri;
+            this.set('graphqlConfig', { uri: uri })
+          })
+      }
 
 
     });
