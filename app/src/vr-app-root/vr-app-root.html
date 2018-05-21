@@ -18,7 +18,7 @@
         flex-direction: column;
         min-height: 100vh;
         background-color: #fff;
-        background-image: url("/assets/images/print_background.jpg");
+        /* background-image: url("/assets/images/print_background.jpg"); */
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -47,6 +47,10 @@
         padding-top: 30px;
         padding-bottom: 30px;
       }
+
+      vr-app-scene {
+        /* max-height: 80vh; */
+      }
       
     </style>
     <app-location route="{{route}}"></app-location>
@@ -55,21 +59,21 @@
     <template is="dom-if" if="[[graphqlConfig]]">
       <graphql-client config="[[graphqlConfig]]"></graphql-client>
       <vr-app-nav></vr-app-nav>
-  
-      <iron-pages selected="[[sectionData.section]]" attr-for-selected="data-page">
-        <div data-page="object">
-          <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
-        </div>
-        <div data-page="scene">
-          <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
-        </div>
-        <div data-page="object">
-          <vr-app-object id="cje63l5is00660101zxjwyslu"></vr-app-object>
-        </div>
-        <div data-page="">
-          <vr-app-homepage></vr-app-homepage>
-        </div>
-      </iron-pages>
+
+      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'object')]]">
+        <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
+      </template>
+
+      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'scene')]]">
+        <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
+      </template>
+
+      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'home')]]">
+        <vr-app-homepage></vr-app-homepage>
+      </template>
+      <template is="dom-if" if="[[!sectionData.section]]">
+        <vr-app-homepage></vr-app-homepage>
+      </template>
     </template>
 
     <div class="app_footer_wrap">
@@ -99,6 +103,10 @@
             const uri = data.uri;
             this.set('graphqlConfig', { uri: uri })
           })
+      },
+
+      __sectionActive: function (activeSection, targetSection) {
+        return activeSection === targetSection;
       }
 
 

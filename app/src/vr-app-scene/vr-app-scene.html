@@ -47,8 +47,7 @@
       }
     </graphql-query>
 
-
-    <slot id="slot"></slot>
+    <iframe id="iframe" src="[[scene.data.body]]"></iframe>
 
     <vr-app-dialog id="objectsDialog">
       <template is="dom-if" if="[[activeObjectId]]">
@@ -82,7 +81,6 @@
         }
       },
       ready: function () {
-        this.$.slot.innerHTML = 'hi';
         const iframe = this.$.iframe;
         iframe.onload = () => {
           /**

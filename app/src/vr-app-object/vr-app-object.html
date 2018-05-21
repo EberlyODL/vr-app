@@ -85,7 +85,7 @@
           <template is="dom-if" if="[[edit]]">
             <paper-textarea rows="3" value="{{object.data.info}}"></paper-textarea>
           </template>
-          <paper-button raised on-click="_toggleEdit">Edit</paper-button>
+          <!-- <paper-button raised on-click="_toggleEdit">Edit</paper-button> -->
           <paper-button hidden$="[[!edit]]" raised on-click="_updateClicked">Update</paper-button>
           <paper-toast id="toast"></paper-toast>
         </div>
