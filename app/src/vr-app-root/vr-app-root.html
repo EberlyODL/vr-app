@@ -18,7 +18,7 @@
         flex-direction: column;
         min-height: 100vh;
         background-color: #fff;
-        /* background-image: url("/assets/images/print_background.jpg"); */
+        background-image: url("/assets/images/print_background.jpg");
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -48,8 +48,11 @@
         padding-bottom: 30px;
       }
 
-      vr-app-scene {
-        /* max-height: 80vh; */
+      main {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        align-content: center;
       }
       
     </style>
@@ -60,20 +63,23 @@
       <graphql-client config="[[graphqlConfig]]"></graphql-client>
       <vr-app-nav></vr-app-nav>
 
-      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'object')]]">
-        <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
-      </template>
+      <main>
+        <template is="dom-if" if="[[__sectionActive(sectionData.section, 'object')]]">
+          <vr-app-object-container route="[[sectionTail]]"></vr-app-object-container>
+        </template>
+  
+        <template is="dom-if" if="[[__sectionActive(sectionData.section, 'scene')]]">
+          <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
+        </template>
+  
+        <template is="dom-if" if="[[__sectionActive(sectionData.section, 'home')]]">
+          <vr-app-homepage></vr-app-homepage>
+        </template>
+        <template is="dom-if" if="[[!sectionData.section]]">
+          <vr-app-homepage></vr-app-homepage>
+        </template>
+      </main>
 
-      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'scene')]]">
-        <vr-app-scene route="[[sectionTail]]"></vr-app-scene>
-      </template>
-
-      <template is="dom-if" if="[[__sectionActive(sectionData.section, 'home')]]">
-        <vr-app-homepage></vr-app-homepage>
-      </template>
-      <template is="dom-if" if="[[!sectionData.section]]">
-        <vr-app-homepage></vr-app-homepage>
-      </template>
     </template>
 
     <div class="app_footer_wrap">
